@@ -1,0 +1,50 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "carpooling-admin": {
+      "root": "carpooling-admin",
+      "framework": "vite"
+    },
+    "carpooling-driver": {
+      "root": "carpooling-driver",
+      "framework": "vite"
+    },
+    "carpooling-passenger": {
+      "root": "carpooling-passenger",
+      "framework": "vite"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/admin/(.*)",
+      "destination": {
+        "service": "carpooling-admin"
+      }
+    },
+    {
+      "source": "/admin",
+      "destination": {
+        "service": "carpooling-admin"
+      }
+    },
+    {
+      "source": "/driver/(.*)",
+      "destination": {
+        "service": "carpooling-driver"
+      }
+    },
+    {
+      "source": "/driver",
+      "destination": {
+        "service": "carpooling-driver"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "carpooling-passenger"
+      }
+    }
+  ]
+}
+
