@@ -1,0 +1,10 @@
+packages:
+  - "carpooling-passenger"
+  - "carpooling-driver"
+  - "carpooling-admin"
+  - "carpooling-common"
+
+allowBuilds:
+  "@firebase/util": true
+  esbuild: true
+  protobufjs: true
