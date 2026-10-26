@@ -545,6 +545,18 @@ export default function Landing() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="/driver"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Drive
+            </a>
+            <a
+              href="/admin"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Admin
+            </a>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -1115,6 +1127,12 @@ export default function Landing() {
               </a>
               <a href="#faq" className="transition-colors hover:text-white">
                 FAQ
+              </a>
+              <a href="/driver" className="transition-colors hover:text-white">
+                Driver Portal
+              </a>
+              <a href="/admin" className="transition-colors hover:text-white">
+                Admin Console
               </a>
             </div>
           </div>

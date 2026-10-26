@@ -64,6 +64,7 @@ export default function App() {
           </ProtectedRoute>
         }
       >
+        <Route index element={<Navigate to={ROUTES.driver.dashboard} replace />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="car" element={<Car />} />
         <Route path="documents-view" element={<DocumentsView />} />

@@ -16,10 +16,10 @@ export const USER_ROLES = {
 } as const satisfies Record<string, User["role"]>;
 
 export const ROUTES = {
-  root: "/",
+  root: "/driver",
   auth: {
-    login: "/auth/login",
-    register: "/auth/register",
+    login: "/driver/auth/login",
+    register: "/driver/auth/register",
   },
   driver: {
     root: "/driver",

@@ -16,15 +16,15 @@ export const USER_ROLES = {
 } as const satisfies Record<string, User["role"]>;
 
 export const ROUTES = {
-  root: "/",
+  root: "/admin",
   auth: {
-    login: "/auth/login",
+    login: "/admin/auth/login",
   },
   chat: {
-    root: "/chat",
-    room: "/chat/:chatId",
-    driver: "/driver/chat",
-    passenger: "/passenger/chat",
+    root: "/admin/chat",
+    room: "/admin/chat/:chatId",
+    driver: "/admin/driver/chat",
+    passenger: "/admin/passenger/chat",
   },
   admin: {
     root: "/admin",

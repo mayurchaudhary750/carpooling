@@ -35,6 +35,7 @@ export default function App() {
           </ProtectedRoute>
         }
       >
+        <Route index element={<Navigate to={ROUTES.admin.dashboard} replace />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="drivers" element={<Drivers />} />
         <Route path="passengers" element={<Passengers />} />
