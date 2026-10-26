@@ -16,17 +16,24 @@
   },
   "rewrites": [
     {
-      "source": "/admin/assets/:match*",
+      "source": "/admin/assets/(.*)",
       "destination": {
         "service": "carpooling-admin",
-        "path": "/assets/:match*"
+        "path": "/assets/$1"
       }
     },
     {
-      "source": "/admin/:file([^/]+\\.[^/]+)",
+      "source": "/admin/vite.svg",
       "destination": {
         "service": "carpooling-admin",
-        "path": "/:file"
+        "path": "/vite.svg"
+      }
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": {
+        "service": "carpooling-admin",
+        "path": "/index.html"
       }
     },
     {
@@ -37,24 +44,24 @@
       }
     },
     {
-      "source": "/admin/:match*",
+      "source": "/driver/assets/(.*)",
       "destination": {
-        "service": "carpooling-admin",
+        "service": "carpooling-driver",
+        "path": "/assets/$1"
+      }
+    },
+    {
+      "source": "/driver/vite.svg",
+      "destination": {
+        "service": "carpooling-driver",
+        "path": "/vite.svg"
+      }
+    },
+    {
+      "source": "/driver/(.*)",
+      "destination": {
+        "service": "carpooling-driver",
         "path": "/index.html"
-      }
-    },
-    {
-      "source": "/driver/assets/:match*",
-      "destination": {
-        "service": "carpooling-driver",
-        "path": "/assets/:match*"
-      }
-    },
-    {
-      "source": "/driver/:file([^/]+\\.[^/]+)",
-      "destination": {
-        "service": "carpooling-driver",
-        "path": "/:file"
       }
     },
     {
@@ -65,28 +72,21 @@
       }
     },
     {
-      "source": "/driver/:match*",
-      "destination": {
-        "service": "carpooling-driver",
-        "path": "/index.html"
-      }
-    },
-    {
-      "source": "/assets/:match*",
+      "source": "/assets/(.*)",
       "destination": {
         "service": "carpooling-passenger",
-        "path": "/assets/:match*"
+        "path": "/assets/$1"
       }
     },
     {
-      "source": "/:file([^/]+\\.[^/]+)",
+      "source": "/vite.svg",
       "destination": {
         "service": "carpooling-passenger",
-        "path": "/:file"
+        "path": "/vite.svg"
       }
     },
     {
-      "source": "/:match*",
+      "source": "/(.*)",
       "destination": {
         "service": "carpooling-passenger",
         "path": "/index.html"
