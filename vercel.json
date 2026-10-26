@@ -16,35 +16,81 @@
   },
   "rewrites": [
     {
-      "source": "/admin/(.*)",
+      "source": "/admin/assets/:match*",
       "destination": {
-        "service": "carpooling-admin"
+        "service": "carpooling-admin",
+        "path": "/assets/:match*"
+      }
+    },
+    {
+      "source": "/admin/:file([^/]+\\.[^/]+)",
+      "destination": {
+        "service": "carpooling-admin",
+        "path": "/:file"
       }
     },
     {
       "source": "/admin",
       "destination": {
-        "service": "carpooling-admin"
+        "service": "carpooling-admin",
+        "path": "/index.html"
       }
     },
     {
-      "source": "/driver/(.*)",
+      "source": "/admin/:match*",
       "destination": {
-        "service": "carpooling-driver"
+        "service": "carpooling-admin",
+        "path": "/index.html"
+      }
+    },
+    {
+      "source": "/driver/assets/:match*",
+      "destination": {
+        "service": "carpooling-driver",
+        "path": "/assets/:match*"
+      }
+    },
+    {
+      "source": "/driver/:file([^/]+\\.[^/]+)",
+      "destination": {
+        "service": "carpooling-driver",
+        "path": "/:file"
       }
     },
     {
       "source": "/driver",
       "destination": {
-        "service": "carpooling-driver"
+        "service": "carpooling-driver",
+        "path": "/index.html"
       }
     },
     {
-      "source": "/(.*)",
+      "source": "/driver/:match*",
       "destination": {
-        "service": "carpooling-passenger"
+        "service": "carpooling-driver",
+        "path": "/index.html"
+      }
+    },
+    {
+      "source": "/assets/:match*",
+      "destination": {
+        "service": "carpooling-passenger",
+        "path": "/assets/:match*"
+      }
+    },
+    {
+      "source": "/:file([^/]+\\.[^/]+)",
+      "destination": {
+        "service": "carpooling-passenger",
+        "path": "/:file"
+      }
+    },
+    {
+      "source": "/:match*",
+      "destination": {
+        "service": "carpooling-passenger",
+        "path": "/index.html"
       }
     }
   ]
 }
-
