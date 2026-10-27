@@ -1,7 +1,7 @@
-name: Monorepo CI Pipeline
+name: Monorepo CI/CD Pipeline
 
 # Trigger conditions:
-# - Runs automatically whenever code is pushed to the 'main' branch
+# - Runs on every push to 'main'
 # - Runs on every pull request targeting 'main'
 on:
   push:
@@ -10,41 +10,114 @@ on:
     branches: [main]
 
 jobs:
+  # ==========================================
+  # CI: Quality Gatekeeper (Tests & Type-Check)
+  # ==========================================
   validate:
     name: Type-Check & Production Build
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the repository source code onto the runner
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Install pnpm matching packageManager defined in package.json
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 11.13.1
 
-      # Step 3: Install Node.js (v22) and configure dependency cache for pnpm
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: "pnpm"
 
-      # Step 4: Install dependencies strictly using pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Step 5: Run ESLint across all workspaces via Turbo
       - name: ESLint code linting
         run: pnpm lint
 
-      # Step 6: Verify TypeScript types across all workspaces in parallel via Turbo
       - name: TypeScript typecheck
         run: pnpm check-types
 
-      # Step 7: Verify production build across all workspaces and generate unified dist
       - name: Build monorepo and generate unified dist
         run: pnpm build
+
+  # ==========================================
+  # CD: Continuous Deployment (Vercel)
+  # ==========================================
+  deploy:
+    name: Deploy to Production (Vercel)
+    needs: validate # 🛡️ GATEKEEPER: ONLY runs if 'validate' passes with 100% green!
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.13.1
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.13.1
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 
