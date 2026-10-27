@@ -36,11 +36,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Step 5: Verify TypeScript types across all workspaces in parallel via Turbo
+      # Step 5: Run ESLint across all workspaces via Turbo
+      - name: ESLint code linting
+        run: pnpm lint
+
+      # Step 6: Verify TypeScript types across all workspaces in parallel via Turbo
       - name: TypeScript typecheck
         run: pnpm check-types
 
-      # Step 6: Verify production build across all workspaces and generate unified dist
+      # Step 7: Verify production build across all workspaces and generate unified dist
       - name: Build monorepo and generate unified dist
         run: pnpm build
 
