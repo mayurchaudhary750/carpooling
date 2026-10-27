@@ -1,6 +1,11 @@
 # RideShare — Carpooling Monorepo
 
 [![CI Monorepo Pipeline](https://github.com/mayurchaudhary750/carpooling/actions/workflows/ci.yml/badge.svg)](https://github.com/mayurchaudhary750/carpooling/actions/workflows/ci.yml)
+![React](https://img.shields.io/badge/React-18-blue?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38bdf8?logo=tailwindcss&logoColor=white)
+![Turborepo](https://img.shields.io/badge/Turborepo-v2-ef4444?logo=turborepo&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-v6-646cff?logo=vite&logoColor=white)
 
 A multi-portal carpooling platform engineered with Vite, React, TypeScript, TailwindCSS, and Turborepo.
 
