@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@11.13.1",
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build && node scripts/bundle-dist.mjs",
     "check-types": "turbo run check-types",
     "dev": "turbo run dev",
     "lint": "turbo run lint",

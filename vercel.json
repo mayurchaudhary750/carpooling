@@ -1,96 +1,26 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "carpooling-admin": {
-      "root": "carpooling-admin",
-      "framework": "vite"
-    },
-    "carpooling-driver": {
-      "root": "carpooling-driver",
-      "framework": "vite"
-    },
-    "carpooling-passenger": {
-      "root": "carpooling-passenger",
-      "framework": "vite"
-    }
-  },
+  "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/admin/assets/(.*)",
-      "destination": {
-        "service": "carpooling-admin",
-        "path": "/assets/$1"
-      }
-    },
-    {
-      "source": "/admin/vite.svg",
-      "destination": {
-        "service": "carpooling-admin",
-        "path": "/vite.svg"
-      }
-    },
-    {
       "source": "/admin/(.*)",
-      "destination": {
-        "service": "carpooling-admin",
-        "path": "/index.html"
-      }
+      "destination": "/admin/index.html"
     },
     {
       "source": "/admin",
-      "destination": {
-        "service": "carpooling-admin",
-        "path": "/index.html"
-      }
-    },
-    {
-      "source": "/driver/assets/(.*)",
-      "destination": {
-        "service": "carpooling-driver",
-        "path": "/assets/$1"
-      }
-    },
-    {
-      "source": "/driver/vite.svg",
-      "destination": {
-        "service": "carpooling-driver",
-        "path": "/vite.svg"
-      }
+      "destination": "/admin/index.html"
     },
     {
       "source": "/driver/(.*)",
-      "destination": {
-        "service": "carpooling-driver",
-        "path": "/index.html"
-      }
+      "destination": "/driver/index.html"
     },
     {
       "source": "/driver",
-      "destination": {
-        "service": "carpooling-driver",
-        "path": "/index.html"
-      }
-    },
-    {
-      "source": "/assets/(.*)",
-      "destination": {
-        "service": "carpooling-passenger",
-        "path": "/assets/$1"
-      }
-    },
-    {
-      "source": "/vite.svg",
-      "destination": {
-        "service": "carpooling-passenger",
-        "path": "/vite.svg"
-      }
+      "destination": "/driver/index.html"
     },
     {
       "source": "/(.*)",
-      "destination": {
-        "service": "carpooling-passenger",
-        "path": "/index.html"
-      }
+      "destination": "/index.html"
     }
   ]
 }
