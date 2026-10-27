@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import ProtectedRoute from "@/components/common/ProtectedRoute";
 import AuthenticatedRoute from "@/components/common/AuthenticatedRoute";
 import PublicAuthRoute from "@/components/common/PublicAuthRoute";
@@ -15,6 +16,7 @@ import { ROUTES, USER_ROLES } from "@/constants";
 
 export default function App() {
   return (
+    <>
     <Routes>
       {/* Public */}
       <Route
@@ -82,5 +84,7 @@ export default function App() {
       />
       <Route path="*" element={<Navigate to={ROUTES.auth.login} replace />} />
     </Routes>
+    <Analytics />
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import ProtectedRoute from "@/components/common/ProtectedRoute";
 import PublicAuthRoute from "@/components/common/PublicAuthRoute";
 import DriverLayout from "@/layouts/DriverLayout";
@@ -18,6 +19,7 @@ import { ROUTES, USER_ROLES } from "@/constants";
 
 export default function App() {
   return (
+    <>
     <Routes>
       {/* Public */}
       <Route
@@ -79,5 +81,7 @@ export default function App() {
       <Route path={ROUTES.root} element={<Navigate to={ROUTES.driver.dashboard} replace />} />
       <Route path="*" element={<Navigate to={ROUTES.auth.login} replace />} />
     </Routes>
+    <Analytics />
+    </>
   );
 }
